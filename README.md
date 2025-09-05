@@ -1,59 +1,52 @@
     docker volume ls
     docker volume  rm name
-  
-  Перевірка стану
-  
+
+Check status
+
     docker ps -a
     docker images
     docker volume ls
 
-Опційно: повне прибирання Docker (ГЛОБАЛЬНО — видалить усе невикористовуване)
-   
-     docker system prune -a --volumes -f
+Optional: full Docker cleanup (GLOBAL — will remove everything unused)
+
+    docker system prune -a --volumes -f
     docker rmi $(docker images -q)
     docker system prune -a --volumes
 
-Виключити
+Disable
 
-    docker compose  down -v
+    docker compose down -v
 
-Запустити 
+Run
 
     docker compose up -d
 
-
-Після запуска контейнера потрібно
+After starting the container, you need to
 
     sudo chmod 777 -R www/
 
- Кожен проект находиться  в окремій папці  і запускаеться  окремо  з потрібної папки.
-  переходимо  в папку  наприклад
- 
-    cd   open30/
 
-запускаем зборку 
+start the build
 
     docker compose up -d --build
 
-При першому запуску в бд загрузиться  дамп чистой CMS (в даній папці opencart 2.3)
+When you first start, a dump of a clean CMS will be loaded into the database
 
- проекти створюют свої компоненти і різні cms не будут перезаписувати  друг друга.
+projects create their own components and different cms will not overwrite each other.
 
- Після запуску проекта  можут бути проблеми  з редагування файлів  в  папці www  
- Потрібно  виконати команду
+After starting the project, there may be problems editing files in the www folder
+You need to run the command
 
     sudo chmod 777 -R www/
 
- Після  запуску проекта  
+After starting the project
 
- сайт доступний http://localhost:8081/index.php
+the site is available http://localhost:8081/index.php
 
- Для запуска phpmyadmin http://localhost:8082/
+To start phpmyadmin http://localhost:8082/
 
+To change the ports, you can edit the .env file
 
-Для зміни  портов  можно редагувати файл .env 
+Also in the .env file are the login and password for the admin (ADMIN_LOGIN,ADMIN_PASSWORD)
 
-Также  в файлі .env находяться  логин і пароль в админку (ADMIN_LOGIN,ADMIN_PASSWORD)
-
-Також ADMIN_URL  - посилання для переходу  в админку
- 
+Also ADMIN_URL - a link to go to the admin
